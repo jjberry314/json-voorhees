@@ -1,7 +1,7 @@
 /** \file
  *  Conversion between C++ types and JSON values.
  *
- *  Copyright (c) 2015 by Travis Gockel. All rights reserved.
+ *  Copyright (c) 2015-2019 by Travis Gockel. All rights reserved.
  *
  *  This program is free software: you can redistribute it and/or modify it under the terms of the Apache License
  *  as published by the Apache Software Foundation, either version 2 of the License, or (at your option) any later
@@ -640,7 +640,7 @@ void extraction_context::extract(const std::type_info& type, const value& from, 
     }
     catch (...)
     {
-        throw extraction_error(*this, "");
+        throw extraction_error(*this, std::string("Exception with type ") + current_exception_type_name());
     }
 }
 
@@ -666,7 +666,7 @@ void extraction_context::extract_sub(const std::type_info& type,
     }
     catch (...)
     {
-        throw extraction_error(sub, "");
+        throw extraction_error(sub, std::string("Exception with type ") + current_exception_type_name());
     }
 }
 
